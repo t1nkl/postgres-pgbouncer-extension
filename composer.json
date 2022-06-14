@@ -1,0 +1,43 @@
+{
+  "name": "t1nkl/postgres-pgbouncer-extension",
+  "description": "PostgreSQL pgbouncer extension for PDO::ATTR_EMULATE_PREPARES option",
+  "keywords": [
+    "laravel",
+    "database",
+    "postgres",
+    "postgresql",
+    "pgbouncer"
+  ],
+  "type": "library",
+  "version": "1.0.1",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kyryll Kovalenko",
+      "email": "kyryll.kovalenko@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0|^8.1",
+    "ext-pdo": "*",
+    "laravel/framework": "^7.0|^8.0|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PostgresPgbouncerExtension\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "PostgresPgbouncerExtension\\PostgresPgbouncerExtensionProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "check-style": "phpcs -p --standard=psr12 src/",
+    "fix-style": "phpcbf -p --standard=psr12 src/"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
