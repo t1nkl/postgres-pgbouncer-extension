@@ -1,15 +1,16 @@
 {
   "name": "t1nkl/postgres-pgbouncer-extension",
-  "description": "PostgreSQL pgbouncer extension for PDO::ATTR_EMULATE_PREPARES option",
+  "description": "Laravel PostgreSQL pgbouncer extension fix for PDO::ATTR_EMULATE_PREPARES option",
   "keywords": [
     "laravel",
     "database",
     "postgres",
     "postgresql",
-    "pgbouncer"
+    "pgbouncer",
+    "ATTR_EMULATE_PREPARES"
   ],
   "type": "library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "authors": [
     {
