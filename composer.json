@@ -10,7 +10,7 @@
     "ATTR_EMULATE_PREPARES"
   ],
   "type": "library",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "authors": [
     {
@@ -21,7 +21,7 @@
   "require": {
     "php": "^7.4|^8.0|^8.1",
     "ext-pdo": "*",
-    "laravel/framework": "^7.0|^8.0|^9.0|^10.0"
+    "laravel/framework": "^7.0|^8.0|^9.0|^10.0|^11.0"
   },
   "autoload": {
     "psr-4": {

@@ -17,8 +17,9 @@ use function is_string;
 class PostgresConnection extends IlluminatePostgresConnection
 {
     /**
-     * @param  PDOStatement  $statement
-     * @param  array  $bindings
+     * @param PDOStatement $statement
+     * @param array $bindings
+     * @return void
      */
     public function bindValues($statement, $bindings)
     {
@@ -42,7 +43,7 @@ class PostgresConnection extends IlluminatePostgresConnection
     }
 
     /**
-     * @param  array  $bindings
+     * @param array $bindings
      * @return array
      */
     public function prepareBindings(array $bindings)
