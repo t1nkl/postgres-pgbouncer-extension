@@ -11,17 +11,21 @@ class PostgresPgbouncerExtensionProvider extends IlluminateServiceProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        if (
-            in_array(
-                PDO::ATTR_EMULATE_PREPARES,
-                config('database.connections.' . config('database.default', 'pgsql') . '.options', [])
-            )
-        ) {
+        $options = config('database.connections.' . config('database.default', 'pgsql') . '.options', []);
+
+        $shouldUseCustomConnection = false;
+        if (is_array($options)) {
+            // Support both associative style: [PDO::ATTR_EMULATE_PREPARES => true]
+            // and numeric style: [PDO::ATTR_EMULATE_PREPARES]
+            $assocEnabled = array_key_exists(PDO::ATTR_EMULATE_PREPARES, $options) && (bool) $options[PDO::ATTR_EMULATE_PREPARES];
+            $numericPresent = in_array(PDO::ATTR_EMULATE_PREPARES, $options, true);
+            $shouldUseCustomConnection = $assocEnabled || $numericPresent;
+        }
+
+        if ($shouldUseCustomConnection) {
             Connection::resolverFor(
                 'pgsql',
                 static function ($connection, $database, $prefix, $config) {
@@ -32,10 +36,9 @@ class PostgresPgbouncerExtensionProvider extends IlluminateServiceProvider
     }
 
     /**
-     * Register the config for publishing
-     *
+     * Register the config for publishing.
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

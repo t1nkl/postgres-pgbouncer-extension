@@ -9,33 +9,27 @@ use Illuminate\Database\PostgresConnection as IlluminatePostgresConnection;
 use PDO;
 use PDOStatement;
 
-use function is_bool;
-use function is_int;
-use function is_resource;
-use function is_string;
-
 class PostgresConnection extends IlluminatePostgresConnection
 {
     /**
      * @param PDOStatement $statement
      * @param array $bindings
-     * @return void
      */
-    public function bindValues($statement, $bindings)
+    public function bindValues($statement, $bindings): void
     {
         foreach ($bindings as $key => $value) {
             $pdoParam = PDO::PARAM_STR;
 
-            if (is_int($value)) {
+            if (\is_int($value)) {
                 $pdoParam = PDO::PARAM_INT;
             }
 
-            if (is_resource($value)) {
+            if (\is_resource($value)) {
                 $pdoParam = PDO::PARAM_LOB;
             }
 
             $statement->bindValue(
-                is_string($key) ? $key : $key + 1,
+                \is_string($key) ? $key : $key + 1,
                 $value,
                 $pdoParam
             );
@@ -43,7 +37,6 @@ class PostgresConnection extends IlluminatePostgresConnection
     }
 
     /**
-     * @param array $bindings
      * @return array
      */
     public function prepareBindings(array $bindings)
@@ -56,7 +49,7 @@ class PostgresConnection extends IlluminatePostgresConnection
             // so we'll just ask the grammar for the format to get from the date.
             if ($value instanceof DateTimeInterface) {
                 $bindings[$key] = $value->format($grammar->getDateFormat());
-            } elseif (is_bool($value)) {
+            } elseif (\is_bool($value)) {
                 $bindings[$key] = $value ? 'true' : 'false';
             }
         }
