@@ -18,7 +18,7 @@ The package is automatically discovered by Laravel and is only activated for the
 
 ## Requirements
 - PHP: ^8.0
-- Laravel Framework: ^10.0 | ^11.0 | ^12.0
+- Laravel Framework: ^10.0 | ^11.0 | ^12.0 | ^13.0
 - PostgreSQL + PgBouncer (transaction or session pooling scenarios)
 
 ## Installation
